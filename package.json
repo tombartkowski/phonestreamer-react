@@ -16,6 +16,8 @@
     "autoprefixer": "^10.2.6",
     "axios": "^0.21.1",
     "cross-env": "^7.0.3",
+    "dotenv": "^10.0.0",
+    "firebase": "^8.6.8",
     "framer-motion": "^4.1.17",
     "npm-run-all": "^4.1.5",
     "postcss": "^8.3.5",
@@ -23,9 +25,14 @@
     "postcss-preset-env": "^6.7.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-dropzone": "^11.3.4",
+    "react-hook-form": "^7.9.0",
     "react-icons": "^4.2.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
+    "react-superellipse": "0.0.6",
+    "react-transition-group": "^4.4.2",
+    "react-use-websocket": "^2.7.1",
     "swr": "^0.5.6",
     "typescript": "^4.3.4"
   },
@@ -53,6 +60,8 @@
     ]
   },
   "devDependencies": {
-    "@types/react-router-dom": "^5.1.7"
+    "@types/react-dropzone": "^5.1.0",
+    "@types/react-router-dom": "^5.1.7",
+    "@types/react-transition-group": "^4.4.1"
   }
 }

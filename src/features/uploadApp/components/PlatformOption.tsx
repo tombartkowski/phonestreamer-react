@@ -21,11 +21,11 @@ export const PlatformOption: FC<PlatformOptionProps> = ({ platformType }) => {
       _hover={{ bg: 'gray.700', cursor: 'pointer' }}
       bg="gray.733"
       rounded="2xl"
-      size="180px"
+      size="140px"
     >
-      <VStack spacing={4}>
-        <Icon as={platformType === PlatformType.IOS ? DiApple : DiAndroid} w={20} h={20} />
-        <Text fontWeight="medium" fontSize={28}>
+      <VStack spacing={2}>
+        <Icon as={platformType === PlatformType.IOS ? DiApple : DiAndroid} w={14} h={14} />
+        <Text fontWeight="medium" fontSize={18}>
           {platformType}
         </Text>
       </VStack>
@@ -34,7 +34,7 @@ export const PlatformOption: FC<PlatformOptionProps> = ({ platformType }) => {
           variant="solid"
           bg="yellow.500"
           textColor="white"
-          fontSize={14}
+          fontSize={10}
           rounded={3}
           position="absolute"
           top={3}
