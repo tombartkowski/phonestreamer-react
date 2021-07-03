@@ -1,4 +1,4 @@
-import { VStack, Heading, Code, Progress } from '@chakra-ui/react';
+import { VStack, Heading, Code, Progress, Container, Box } from '@chakra-ui/react';
 import { Switch, Route, useLocation } from 'react-router-dom';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import { IOSBuildQuestion } from './IOSBuildQuestion';
@@ -80,30 +80,32 @@ export const UploadApp = () => {
   };
 
   return (
-    <>
-      <Progress
-        mb={10}
-        colorScheme="teal"
-        value={progressForPath(location.pathname)}
-        rounded={3}
-        size="sm"
-      />
-      <VStack spacing={6} align="left">
-        <Heading size="lg" textAlign="left">
-          {titleForPath(location.pathname)}
-        </Heading>
-        <TransitionGroup>
-          <CSSTransition timeout={250} classNames="fade" key={location.key}>
-            <Switch location={location}>
-              <Route exact={true} path="/upload" component={SelectPlatform} />
-              <Route exact={true} path="/upload/ios" component={IOSBuildQuestion} />
-              <Route exact={true} path="/upload/ios/instructions" component={IOSInstruction} />
-              <Route exact={true} path="/upload/file" component={UploadAppFile} />
-              <Route exact={false} path="/upload/summary" component={UploadSummary} />
-            </Switch>
-          </CSSTransition>
-        </TransitionGroup>
-      </VStack>
-    </>
+    <Container maxW="container.md">
+      <Box text textColor="gray.200" pt={10} pb={64}>
+        <Progress
+          mb={10}
+          colorScheme="teal"
+          value={progressForPath(location.pathname)}
+          rounded={3}
+          size="sm"
+        />
+        <VStack spacing={6} align="left">
+          <Heading size="lg" textAlign="left">
+            {titleForPath(location.pathname)}
+          </Heading>
+          <TransitionGroup>
+            <CSSTransition timeout={250} classNames="fade" key={location.key}>
+              <Switch location={location}>
+                <Route exact={true} path="/upload" component={SelectPlatform} />
+                <Route exact={true} path="/upload/ios" component={IOSBuildQuestion} />
+                <Route exact={true} path="/upload/ios/instructions" component={IOSInstruction} />
+                <Route exact={true} path="/upload/file" component={UploadAppFile} />
+                <Route exact={false} path="/upload/summary" component={UploadSummary} />
+              </Switch>
+            </CSSTransition>
+          </TransitionGroup>
+        </VStack>
+      </Box>
+    </Container>
   );
 };

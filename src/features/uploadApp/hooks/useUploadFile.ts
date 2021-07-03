@@ -13,6 +13,7 @@ export const useUploadFile = ({
   const uploadFile = (file: File) => {
     const formData = new FormData();
     formData.append('app', file);
+    formData.append('testerId', 'jp2137');
     axios
       .post('http://localhost:3030/apps', formData, {
         headers: {
