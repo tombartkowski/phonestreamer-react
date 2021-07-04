@@ -1,23 +1,21 @@
-import { Button, useToast } from '@chakra-ui/react';
 import { Form, useFormik, FormikProvider } from 'formik';
-import { EmailInput } from '../../components/EmailInput';
-import { PasswordField } from '../../components/PasswordField';
+import { PasswordField } from './PasswordField';
 import * as Yup from 'yup';
-import { CheckboxField } from '../../components/CheckboxField';
-import { Link } from '../../components/Link';
-import { useSignup } from '../hooks/useSignup';
-import { useDebouncedRequest } from '../../../../api/useDebouncedRequest';
-import { Request } from '../../../../api/request';
-import { AuthRequest, ValidationResult } from '../../../../api/authRequest';
-import { Toast } from '../../../../components/Toast';
+import { CheckboxField } from './CheckboxField';
+import { Link } from './Link';
+import { useAuthAction } from '../hooks/useAuthAction';
+import { useDebouncedRequest } from '../../../api/useDebouncedRequest';
+import { Request } from '../../../api/request';
+import { AuthRequest, ValidationResult } from '../../../api/authRequest';
 import { FC } from 'react';
+import { InputField } from './InputField';
+import { SubmitButton } from './SubmitButton';
+import { useAuthResultHandler } from '../hooks/useAuthResultHandler';
 
 type SignupFormProps = {
   onSignupSuccess: () => void;
 };
 export const SignupForm: FC<SignupFormProps> = ({ onSignupSuccess }) => {
-  const toast = useToast();
-
   const SignupSchema = Yup.object({
     email: Yup.string()
       .strict()
@@ -46,26 +44,12 @@ export const SignupForm: FC<SignupFormProps> = ({ onSignupSuccess }) => {
     ),
   });
 
-  const onSignupCompleted = (data?: any, error?: Error) => {
-    if (error) {
-      toast({
-        position: 'top',
-        render: ({ id, onClose }) => {
-          return (
-            <Toast
-              id={id + ''}
-              message={error.message}
-              status="error"
-              onClose={onClose}
-            />
-          );
-        },
-      });
-    } else if (data) {
-      onSignupSuccess();
-    }
-  };
-  const [signup, isLoading] = useSignup('email', onSignupCompleted);
+  const [signup, isLoading] = useAuthAction(
+    'signup',
+    'email',
+    useAuthResultHandler(onSignupSuccess)
+  );
+
   const formik = useFormik({
     initialValues: {
       email: '',
@@ -84,25 +68,18 @@ export const SignupForm: FC<SignupFormProps> = ({ onSignupSuccess }) => {
   return (
     <FormikProvider value={formik}>
       <Form>
-        <EmailInput name="email" />
-        <PasswordField name="password" />
+        <InputField
+          label="Email"
+          placeholder="E.g. john.doe@domain.com"
+          id="email"
+          type="email"
+          name="email"
+        />
+        <PasswordField name="password" placeholder="At least 6 characters." />
         <CheckboxField name="hasAcceptedTerms">
           I accept the <Link>terms of service</Link>.
         </CheckboxField>
-        <Button
-          isLoading={isLoading}
-          mt="5"
-          type="submit"
-          _hover={{ bg: 'teal.500' }}
-          _active={{ bg: 'teal.600' }}
-          textColor="white"
-          bg="teal.400"
-          size="lg"
-          fontSize="md"
-          isFullWidth
-        >
-          Sign up
-        </Button>
+        <SubmitButton isLoading={isLoading}>Sign up</SubmitButton>
       </Form>
     </FormikProvider>
   );
