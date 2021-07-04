@@ -6,6 +6,7 @@ type TextInputProps = {
   type: string;
   id: string;
   isValid: boolean;
+  isTouched: boolean;
   onFocus: (event: FocusEvent<HTMLInputElement>) => void;
 };
 
@@ -13,6 +14,7 @@ export const TextInput: FC<TextInputProps & FieldInputProps<string>> = ({
   type,
   id,
   isValid,
+  isTouched,
   onFocus,
   ...field
 }) => {
@@ -22,7 +24,9 @@ export const TextInput: FC<TextInputProps & FieldInputProps<string>> = ({
       bg="gray.733"
       _hover={{ bg: 'gray.666' }}
       focusBorderColor={isValid ? 'green.400' : 'blue.400'}
-      errorBorderColor={isValid ? 'green.400' : 'red.300'}
+      errorBorderColor={
+        isValid ? (isTouched ? 'green.400' : 'transparent') : 'red.300'
+      }
       variant="filled"
       size="lg"
       type={type}

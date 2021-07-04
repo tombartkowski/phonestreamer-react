@@ -22,6 +22,7 @@ export const EmailInput: FC<FieldHookConfig<string>> = ({ ...props }) => {
         <TextInput
           {...field}
           id="name"
+          isTouched={meta.touched}
           isValid={!meta.error}
           name="email"
           type="email"

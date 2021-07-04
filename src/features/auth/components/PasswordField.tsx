@@ -44,6 +44,7 @@ export const PasswordField: FC<FieldHookConfig<string>> = ({ ...props }) => {
         <InputGroup size="lg" variant="filled">
           <TextInput
             {...field}
+            isTouched={meta.touched}
             id="password"
             isValid={!meta.error}
             onBlur={handleBlur}

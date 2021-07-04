@@ -17,3 +17,7 @@
   display: none;
   opacity: 0;
 }
+
+.firebase-emulator-warning {
+  display: none;
+}

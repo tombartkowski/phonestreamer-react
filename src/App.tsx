@@ -2,7 +2,6 @@ import { Router } from './router/router';
 import dotenv from 'dotenv';
 import { useEffect } from 'react';
 import firebase from 'firebase/app';
-import path from 'path';
 
 const App = () => {
   useEffect(() => {
@@ -16,8 +15,8 @@ const App = () => {
         messagingSender: process.env.REACT_APP_FIR_SENDER_ID,
         appId: process.env.REACT_APP_FIR_APP_ID,
       };
-
       firebase.initializeApp(firebaseConfig);
+      firebase.auth().useEmulator('http://localhost:9099');
     }
   }, []);
 
