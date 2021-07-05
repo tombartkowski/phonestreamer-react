@@ -1,10 +1,11 @@
 import { Box, Collapse, Heading, Text } from '@chakra-ui/react';
 import 'firebase/auth';
 import { Link } from './Link';
-import { ResetPasswordForm } from './ResetPasswordForm';
 import { ResetPasswordBanner } from './ResetPasswordBanner';
 import { useState } from 'react';
 import { AuthContainer } from './AuthContainer';
+import { FieldDescriptions, InitialValues, ValidationSchemas } from '../consts';
+import { AuthForm } from './AuthForm';
 
 export const ResetPassword = () => {
   const [isBanerOpen, setIsBanerOpen] = useState(false);
@@ -33,7 +34,15 @@ export const ResetPassword = () => {
           <br /> For security reasons, we do NOT store your password. So rest assured
           that we will never send your password via email.
         </Text>
-        <ResetPasswordForm onResetPasswordSuccess={handleResetPasswordSuccess} />
+        {/* <ResetPasswordForm onResetPasswordSuccess={handleResetPasswordSuccess} /> */}
+        <AuthForm
+          fields={FieldDescriptions.ResetPassword}
+          initialValues={InitialValues.ResetPassword}
+          validationSchema={ValidationSchemas.ResetPassword}
+          authAction="reset-password"
+          submitButtonText="Send reset instructions"
+          onSubmitSuccess={handleResetPasswordSuccess}
+        ></AuthForm>
         <Text mt="6" pb="16" align="center" fontWeight="medium">
           <Link marginStart="1.5" href="/sign-in">
             Back to Sign in.

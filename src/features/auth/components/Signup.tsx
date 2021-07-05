@@ -1,12 +1,15 @@
 import { Box, Heading, Text } from '@chakra-ui/react';
 import 'firebase/auth';
 import { DividerWithText } from './DividerWithText';
-import { SignupForm } from './SignupForm';
 import { useAuthAction } from '../hooks/useAuthAction';
 import { AuthContainer } from './AuthContainer';
 import { GithubButton } from './GithubButton';
 import { BottomLink } from './BottomLink';
 import { useAuthResultHandler } from '../hooks/useAuthResultHandler';
+import { AuthForm } from './AuthForm';
+import { FieldDescriptions, InitialValues, ValidationSchemas } from '../consts';
+import { CheckboxField } from './CheckboxField';
+import { Link } from './Link';
 
 export const Signup = () => {
   const handleSignupSuccess = () => {
@@ -37,7 +40,19 @@ export const Signup = () => {
       <Box maxW="60%" mx="auto">
         <GithubButton isLoading={isLoading} onClick={signup} />
         <DividerWithText mb={5}>or use email</DividerWithText>
-        <SignupForm onSignupSuccess={handleSignupSuccess} />
+        <AuthForm
+          fields={FieldDescriptions.Signup}
+          initialValues={InitialValues.Signup}
+          validationSchema={ValidationSchemas.Signup}
+          validateOnMount={true}
+          authAction="signup"
+          submitButtonText="Sign up"
+          onSubmitSuccess={handleSignupSuccess}
+        >
+          <CheckboxField name="hasAcceptedTerms">
+            I accept the <Link>terms of service</Link>.
+          </CheckboxField>
+        </AuthForm>
         <BottomLink
           questionText="Already have an account?"
           linkText="Sign in."

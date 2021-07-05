@@ -1,5 +1,5 @@
 import { Text } from '@chakra-ui/react';
-import React, { FC } from 'react';
+import { FC } from 'react';
 import { Link } from './Link';
 
 type BottomLinkProps = {

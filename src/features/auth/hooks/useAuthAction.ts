@@ -9,8 +9,9 @@ import {
 } from '../consts';
 import { CentralUrl } from '../../../api/consts';
 
-type AuthMethod = 'email' | 'github';
-type AuthAction = 'signin' | 'signup' | 'reset-password';
+export type AuthMethod = 'email' | 'github';
+export type AuthAction = 'signin' | 'signup' | 'reset-password';
+
 type AuthResponse = (body: any) => void | Promise<void>;
 type IsLoading = boolean;
 type AuthCallback = (data?: any, error?: Error) => void;

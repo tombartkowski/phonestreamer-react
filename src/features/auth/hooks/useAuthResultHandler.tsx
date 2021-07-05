@@ -19,7 +19,7 @@ export const useAuthResultHandler = (callback: (data?: any) => void) => {
         },
       });
     } else if (data) {
-      callback();
+      callback(data);
     }
   };
   return onSignupCompleted;

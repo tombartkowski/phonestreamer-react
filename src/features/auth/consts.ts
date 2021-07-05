@@ -1,3 +1,9 @@
+import * as Yup from 'yup';
+import { Request } from '../../api/request';
+import { AuthRequest, ValidationResult } from '../../api/authRequest';
+import { CentralUrl } from '../../api/consts';
+import axios from 'axios';
+
 export enum FirebaseAuthErrorCode {
   ARGUMENT_ERROR = 'auth/argument-error',
   CAPTCHA_CHECK_FAILED = 'auth/captcha-check-failed',
@@ -85,4 +91,114 @@ export const mapCodeToUserMessage = (errorCode: string) => {
   };
 
   return errorMessagesMap[errorCode];
+};
+
+export const FieldDescriptions = {
+  Signup: [
+    {
+      name: 'email',
+      id: 'email',
+      label: 'Email',
+      type: 'email',
+      placeholder: 'E.g. john.doe@domain.com',
+    },
+    {
+      name: 'password',
+      id: 'password',
+      label: 'Password',
+      type: 'password',
+      placeholder: 'At least 6 characters.',
+    },
+  ],
+  Signin: [
+    {
+      name: 'email',
+      id: 'email',
+      label: 'Email',
+      type: 'email',
+      placeholder: 'Your email.',
+    },
+    {
+      name: 'password',
+      id: 'password',
+      label: 'Password',
+      type: 'password',
+      placeholder: 'Your password.',
+    },
+  ],
+  ResetPassword: [
+    {
+      name: 'email',
+      id: 'email',
+      label: 'Email',
+      type: 'email',
+      placeholder: 'Your email.',
+      shouldValidate: false,
+    },
+  ],
+};
+
+const verifyEmailAvailable = async (
+  request: Request<ValidationResult>
+): Promise<ValidationResult> => {
+  const response = await axios.request({
+    url: CentralUrl + request.path,
+    method: request.method,
+    params: request.query,
+    data: request.body,
+  });
+  return response.data;
+};
+
+export const ValidationSchemas = {
+  Signup: Yup.object({
+    email: Yup.string()
+      .strict()
+      .required("Please don't leave the email empty.")
+      .email('Please make sure the email has a correct format.')
+      .test(
+        'email-taken',
+        'That email is already taken. Sign in instead?',
+        async (value, _context) => {
+          if (!Yup.string().email().isValidSync(value)) {
+            return false;
+          } else {
+            const result = await verifyEmailAvailable(
+              AuthRequest.validateEmail(value!)
+            );
+            return (result && result.isValid) || false;
+          }
+        }
+      ),
+    password: Yup.string()
+      .min(6, 'Try to make the password at least 6 characters long.')
+      .required("Please don't leave the password empty."),
+    hasAcceptedTerms: Yup.boolean().oneOf(
+      [true],
+      'Please accept our terms of service.'
+    ),
+  }),
+  Signin: Yup.object({
+    email: Yup.string()
+      .strict()
+      .required("Please don't leave the email empty.")
+      .email('Please make sure the email has a correct format.'),
+    password: Yup.string().required("Please don't leave the password empty."),
+  }),
+  ResetPassword: undefined,
+};
+
+export const InitialValues = {
+  Signup: {
+    email: '',
+    password: '',
+    hasAcceptedTerms: false,
+  },
+  Signin: {
+    email: '',
+    password: '',
+  },
+  ResetPassword: {
+    email: '',
+  },
 };
