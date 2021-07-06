@@ -3,22 +3,28 @@ import { UploadApp } from '../features/uploadApp/components/UploadApp';
 import { Signup } from '../features/auth/components/Signup';
 import { SignIn } from '../features/auth/components/SignIn';
 import { ResetPassword } from '../features/auth/components/ResetPassword';
+import { Dashboard } from '../features/dashboard/Dashboard';
+import { AppContainer } from '../components/AppContainer';
+import { ProtectedRoute } from './ProtectedRoute';
 
 export const Router = () => {
   return (
     <BrowserRouter>
       <Switch>
-        <Redirect exact from="/" to="/sign-up" />
-        <Route path="/sign-up">
-          <Signup />
-        </Route>
-        <Route path="/sign-in">
-          <SignIn />
-        </Route>
-        <Route path="/reset-password">
-          <ResetPassword />
-        </Route>
-        <Route path="/upload" component={UploadApp} />
+        <Redirect exact from="/" to="/dashboard" />
+        <Route path="/sign-up" component={Signup} />
+        <Route path="/sign-in" component={SignIn} />
+        <Route path="/reset-password" component={ResetPassword} />
+        <ProtectedRoute path="/dashboard">
+          <AppContainer>
+            <Dashboard />
+          </AppContainer>
+        </ProtectedRoute>
+        <ProtectedRoute path="/upload">
+          <AppContainer>
+            <UploadApp />
+          </AppContainer>
+        </ProtectedRoute>
       </Switch>
     </BrowserRouter>
   );

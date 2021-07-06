@@ -54,7 +54,7 @@ const sendUserToServer = async (
   method: AuthMethod
 ) => {
   const response = await axios.post(CentralUrl + '/users', {
-    firebaseUid: firebaseUser?.uid,
+    firebaseId: firebaseUser?.uid,
     email: firebaseUser?.email,
     source: authAction,
     method: method,
@@ -73,6 +73,7 @@ export const useAuthAction = (
     setIsLoading(true);
     try {
       if (authAction === 'signin' || authAction === 'signup') {
+        console.log(body);
         const userCredential = (await (method === 'email'
           ? authAction === 'signin'
             ? firebase.auth().signInWithEmailAndPassword(body.email, body.password)

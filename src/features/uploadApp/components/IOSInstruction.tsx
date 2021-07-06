@@ -11,21 +11,28 @@ export const IOSInstruction = () => {
         <InstructionParagraph>
           Open up <b>Xcode</b> and select any simulator as a build target.
         </InstructionParagraph>
-        <Image fit="contain" rounded="md" align="left" height="36px" src="/ios-instruction-1.png" />
+        <Image
+          fit="contain"
+          rounded="md"
+          align="left"
+          height="36px"
+          src="/ios-instruction-1.png"
+        />
         <Text fontSize="xs" mt={1.5} textColor="gray.500">
           Example of a xCode build target.
         </Text>
         <InstructionParagraph>
-          Build and run the app to verify that it <Text as="i">Works on your Machine™.</Text>
+          Build and run the app to verify that it{' '}
+          <Text as="i">Works on your Machine™.</Text>
         </InstructionParagraph>
       </Box>
       <Box mt={10}>
         <InstructionSectionHeader title="🔎 Locate the bundle." />
         <InstructionParagraph>
-          <i>Navigate</i> to your app's <strong>DerviedData</strong> directory.
+          In terminal, navigate to your app's <strong>DerviedData</strong> directory.
         </InstructionParagraph>
-        <InstructionCodeToCopy code="cd ~/Library/Developer/Xcode/DerivedData/<app-name>*" />
-        <Text py={1}>
+        <InstructionCodeToCopy code="cd ~/Library/Developer/Xcode/DerivedData/<your-app-name>*" />
+        <Text fontSize="lg" pb={0.5} pt={2}>
           For an app named <strong>MyApp</strong> the command would be:
         </Text>
         <Code>cd ~/Library/Developer/Xcode/DerivedData/MyApp*</Code>
@@ -34,8 +41,9 @@ export const IOSInstruction = () => {
         </InstructionParagraph>
         <InstructionCodeToCopy code="cd Build/Products/Debug-iphonesimulator" />
         <InstructionParagraph>
-          Finally open the current directory in <strong>Finder</strong>. Your app wil be there as{' '}
-          <Code>{'<app-name>'}.app</Code>
+          Finally open the current directory in <strong>Finder</strong>. Your app wil
+          be there as <Code>{'<your-app-name>'}.app</Code>. It can also appear
+          without an extension
         </InstructionParagraph>
         <InstructionCodeToCopy code="open ." />
       </Box>
@@ -58,12 +66,12 @@ export const IOSInstruction = () => {
           Example of compressing the <Code fontSize="xx-small">.app</Code> file.
         </Text>
         <InstructionParagraph>
-          After doing so a <Code>.zip</Code> file will appear. This is the file to upload to{' '}
-          <strong>PhoneStreamer</strong>.
+          After doing so a <Code>.zip</Code> file will appear. This is the file to
+          upload to <strong>PhoneStreamer</strong>.
         </InstructionParagraph>
       </Box>
       <Link to="/upload/file">
-        <Button w="52" mt="6" as="a" size="lg" colorScheme="teal">
+        <Button w="52" mt="6" as="span" size="lg" colorScheme="teal">
           Lets upload!
         </Button>
       </Link>

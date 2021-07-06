@@ -34,7 +34,6 @@ export const ResetPassword = () => {
           <br /> For security reasons, we do NOT store your password. So rest assured
           that we will never send your password via email.
         </Text>
-        {/* <ResetPasswordForm onResetPasswordSuccess={handleResetPasswordSuccess} /> */}
         <AuthForm
           fields={FieldDescriptions.ResetPassword}
           initialValues={InitialValues.ResetPassword}

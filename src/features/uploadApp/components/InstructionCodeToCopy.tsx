@@ -12,9 +12,11 @@ export const InstructionCodeToCopy: FC<InstructionCodeToCopyProps> = ({ code }) 
     <Flex mb={2}>
       <Code
         colorScheme="blue"
-        flexGrow={1}
+        flexGrow={0}
         display="flex"
-        px={4}
+        noOfLines={{ xs: 1 }}
+        pl={4}
+        pr={8}
         justifyContent="left"
         alignItems="center"
         rounded="lg"

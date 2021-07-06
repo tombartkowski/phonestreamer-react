@@ -3,7 +3,7 @@ import { FC } from 'react';
 
 export const InstructionParagraph: FC = ({ children }) => {
   return (
-    <Text pt={8} pb={4} fontSize="lg">
+    <Text pt={8} pb={4} fontSize="lg" maxW="3xl">
       {children}
     </Text>
   );

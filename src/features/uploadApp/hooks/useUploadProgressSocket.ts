@@ -1,11 +1,19 @@
+import { useEffect } from 'react';
 import useWebSocket from 'react-use-websocket';
-const SocketUrl = 'ws://localhost:3005';
+import { useUser } from '../../../hooks/useUser';
+const SocketUrl = process.env.REACT_APP_UPLOAD_PROGRESS_SOCKET_URL!;
 
 export const useUploadProgressSocket = (): [number] => {
+  const [user] = useUser();
+
   const { lastJsonMessage, sendJsonMessage } = useWebSocket(SocketUrl, {
-    onOpen: () => sendJsonMessage({ testerId: 'jp2137', type: 'subscribe' }),
     shouldReconnect: () => true,
   });
+  useEffect(() => {
+    if (user) {
+      sendJsonMessage({ user: user.id, type: 'subscribe' });
+    }
+  }, [user, sendJsonMessage]);
 
   return [(lastJsonMessage && lastJsonMessage.progress) || 0];
 };

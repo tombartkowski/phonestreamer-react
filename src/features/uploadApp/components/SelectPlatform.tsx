@@ -7,9 +7,7 @@ export const SelectPlatform = () => {
     <HStack spacing={5}>
       <LinkBox>
         <Link to="upload/ios">
-          <LinkOverlay>
-            <PlatformOption platformType={PlatformType.IOS} />
-          </LinkOverlay>
+          <PlatformOption platformType={PlatformType.IOS} />
         </Link>
       </LinkBox>
       <PlatformOption platformType={PlatformType.ANDROID} />

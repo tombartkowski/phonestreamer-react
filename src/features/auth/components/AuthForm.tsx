@@ -44,6 +44,7 @@ export const AuthForm: FC<AuthFormProps> = props => {
     if (fieldDescription.type === 'password') {
       return (
         <PasswordField
+          key={fieldDescription.name}
           name={fieldDescription.name}
           placeholder={fieldDescription.placeholder}
         />
@@ -51,6 +52,7 @@ export const AuthForm: FC<AuthFormProps> = props => {
     } else {
       return (
         <InputField
+          key={fieldDescription.name}
           name={fieldDescription.name}
           placeholder={fieldDescription.placeholder}
           id={fieldDescription.id}

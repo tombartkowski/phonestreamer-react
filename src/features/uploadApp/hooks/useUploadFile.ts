@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { useState } from 'react';
 import { App } from '../../../entities/app';
+import { useUser } from '../../../hooks/useUser';
 
 export const useUploadFile = ({
   onUploadError,
@@ -10,17 +11,20 @@ export const useUploadFile = ({
   onCompleted: (app: App) => void;
 }): [number, (file: File) => void] => {
   const [uploadProgress, setUploadProgress] = useState(0);
+  const [user] = useUser();
   const uploadFile = (file: File) => {
     const formData = new FormData();
     formData.append('app', file);
-    formData.append('testerId', 'jp2137');
+    formData.append('user', user.id);
     axios
       .post('http://localhost:3030/apps', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
         onUploadProgress: progressEvent => {
-          const progress = Math.round((progressEvent.loaded * 100) / progressEvent.total / 2);
+          const progress = Math.round(
+            (progressEvent.loaded * 100) / progressEvent.total / 2
+          );
           setUploadProgress(progress);
         },
       })
@@ -42,7 +46,9 @@ export const useUploadFile = ({
             )
           );
         } else {
-          onUploadError(new Error(`Errorception 🤯. I failed to even identify the error.`));
+          onUploadError(
+            new Error(`Errorception 🤯. I failed to even identify the error.`)
+          );
         }
       });
   };

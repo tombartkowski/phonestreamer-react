@@ -26,13 +26,13 @@ export const UploadSummary = () => {
   const [app, setApp] = useState<App | null>(null);
   const [alerVisible, setAlertVisible] = useState(true);
   useEffect(() => {
-    const appShortId = location.pathname.split('/').slice(-1)[0];
-    fetch('http://localhost:3030/apps?shortId=' + appShortId)
+    const appId = location.pathname.split('/').slice(-1)[0];
+    fetch('http://localhost:3030/apps/' + appId)
       .then(response => {
         return response.json();
       })
       .then(json => {
-        setApp(json[0]);
+        setApp(json);
       });
 
     return () => {};
@@ -41,7 +41,14 @@ export const UploadSummary = () => {
   return (
     <Box transform="translate(0, -40px)">
       {alerVisible && (
-        <Alert status="success" variant="subtle" rounded="lg">
+        <Alert
+          status="success"
+          maxW="xl"
+          mb="20"
+          mx="auto"
+          variant="subtle"
+          rounded="lg"
+        >
           <AlertIcon />
           App uploaded successfully!
           <CloseButton
@@ -92,17 +99,32 @@ export const UploadSummary = () => {
           </SuperEllipse>
 
           <Box pt="44px" pb={1}>
-            <Skeleton isLoaded={app != null} rounded="md" startColor="gray.666" endColor="gray.600">
+            <Skeleton
+              isLoaded={app != null}
+              rounded="md"
+              startColor="gray.666"
+              endColor="gray.600"
+            >
               <Heading>{app?.altName || 'App Name'}</Heading>
             </Skeleton>
           </Box>
           <Text fontSize="15px" fontWeight="medium" textColor="gray.400">
-            <Skeleton isLoaded={app != null} rounded="md" startColor="gray.666" endColor="gray.600">
+            <Skeleton
+              isLoaded={app != null}
+              rounded="md"
+              startColor="gray.666"
+              endColor="gray.600"
+            >
               {app?.bundleIdentifier || 'com.bundle.identifier'}
             </Skeleton>
           </Text>
           <Box pt={4}>
-            <Skeleton isLoaded={app != null} rounded="md" startColor="gray.666" endColor="gray.600">
+            <Skeleton
+              isLoaded={app != null}
+              rounded="md"
+              startColor="gray.666"
+              endColor="gray.600"
+            >
               <HStack fontSize="sm" textColor="blue.300" spacing="24px">
                 <HStack spacing="4px">
                   <Icon as={GoVersions} pt="1px" w="18px" h="18px" />
@@ -120,12 +142,17 @@ export const UploadSummary = () => {
             </Skeleton>
           </Box>
           <Box pt={8}>
-            <Skeleton isLoaded={app != null} rounded="md" startColor="gray.666" endColor="gray.600">
+            <Skeleton
+              isLoaded={app != null}
+              rounded="md"
+              startColor="gray.666"
+              endColor="gray.600"
+            >
               <Stack direction="row" spacing={4} align="center">
                 <Button w="48" size="lg" leftIcon={<Icon as={FaShare} />}>
                   Share
                 </Button>
-                <Button fontWeight="semibold" w="48" size="lg" colorScheme="teal">
+                <Button fontWeight="semibold" w="48" size="lg" colorScheme="cyan">
                   Start Testing
                 </Button>
               </Stack>

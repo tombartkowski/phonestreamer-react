@@ -23,10 +23,13 @@ export const UploadAppFile = () => {
   };
   const onCompleted = (app: App) => {
     setTimeout(() => {
-      history.push('/upload/summary/' + app.shortId);
+      history.push('/upload/summary/' + app.id);
     }, 300);
   };
-  const [zipUploadProgress, uploadFile] = useUploadFile({ onUploadError, onCompleted });
+  const [zipUploadProgress, uploadFile] = useUploadFile({
+    onUploadError,
+    onCompleted,
+  });
   const [socketUploadProgress] = useUploadProgressSocket();
 
   const onDrop = useCallback(
@@ -40,16 +43,22 @@ export const UploadAppFile = () => {
     [uploadFile]
   );
 
-  const { getRootProps, draggedFiles, getInputProps, open, isDragActive, isDragAccept } =
-    useDropzone({
-      onDrop,
-      onDropRejected: errorToast,
-      noClick: true,
-      noKeyboard: true,
-      maxFiles: 1,
-      accept:
-        'application/zip,application/x-zip,application/x-zip-compressed,application/octet-stream',
-    });
+  const {
+    getRootProps,
+    draggedFiles,
+    getInputProps,
+    open,
+    isDragActive,
+    isDragAccept,
+  } = useDropzone({
+    onDrop,
+    onDropRejected: errorToast,
+    noClick: true,
+    noKeyboard: true,
+    maxFiles: 1,
+    accept:
+      'application/zip,application/x-zip,application/x-zip-compressed,application/octet-stream',
+  });
 
   const currentProgress = Math.max(zipUploadProgress, socketUploadProgress);
   return (
@@ -77,7 +86,9 @@ export const UploadAppFile = () => {
             )}
           </>
         )}
-        {isUploading || <>{!isDragActive && <UploadFilePrompt browseFilesClicked={open} />}</>}
+        {isUploading || (
+          <>{!isDragActive && <UploadFilePrompt browseFilesClicked={open} />}</>
+        )}
         <input {...getInputProps()} />
         {isUploading && <UploadFileProgress progress={currentProgress} />}
       </Box>

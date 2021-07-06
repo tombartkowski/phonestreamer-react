@@ -1,4 +1,9 @@
-import { Text, Center, CircularProgress, CircularProgressLabel } from '@chakra-ui/react';
+import {
+  Text,
+  Center,
+  CircularProgress,
+  CircularProgressLabel,
+} from '@chakra-ui/react';
 import React, { FC } from 'react';
 
 type UploadFileProgressProps = {
@@ -17,7 +22,7 @@ export const UploadFileProgress: FC<UploadFileProgressProps> = ({ progress }) =>
       >
         <CircularProgressLabel>{`${progress}%`}</CircularProgressLabel>
       </CircularProgress>
-      <Text text fontWeight="medium" pl={2} pt={1} textColor="gray.400">
+      <Text fontWeight="medium" pl={2} pt={1} textColor="gray.400">
         Uploading your <i>Magnum Opus</i>...
       </Text>
     </Center>

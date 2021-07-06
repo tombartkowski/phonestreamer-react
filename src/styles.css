@@ -21,3 +21,7 @@
 .firebase-emulator-warning {
   display: none;
 }
+
+html {
+  background-color: #1a202c;
+}

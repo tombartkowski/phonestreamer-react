@@ -9,10 +9,12 @@ import { useAuthResultHandler } from '../hooks/useAuthResultHandler';
 import { useAuthAction } from '../hooks/useAuthAction';
 import { FieldDescriptions, InitialValues, ValidationSchemas } from '../consts';
 import { AuthForm } from './AuthForm';
+import { useHistory } from 'react-router-dom';
 
 export const SignIn = () => {
+  const history = useHistory();
   const handleSignInSuccess = () => {
-    console.log('REDIRECT');
+    history.replace('/dashboard');
   };
 
   const [signin, isLoading] = useAuthAction(

@@ -10,10 +10,13 @@ import { AuthForm } from './AuthForm';
 import { FieldDescriptions, InitialValues, ValidationSchemas } from '../consts';
 import { CheckboxField } from './CheckboxField';
 import { Link } from './Link';
+import { useHistory } from 'react-router-dom';
 
 export const Signup = () => {
+  const history = useHistory();
+
   const handleSignupSuccess = () => {
-    console.log('REDIRECT');
+    history.replace('/dashboard');
   };
 
   const [signup, isLoading] = useAuthAction(

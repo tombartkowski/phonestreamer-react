@@ -34,6 +34,7 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
     "react-superellipse": "0.0.6",
+    "react-table": "^7.7.0",
     "react-transition-group": "^4.4.2",
     "react-use-websocket": "^2.7.1",
     "swr": "^0.5.6",
@@ -68,6 +69,7 @@
     "@types/lodash.memoize": "^4.1.6",
     "@types/react-dropzone": "^5.1.0",
     "@types/react-router-dom": "^5.1.7",
+    "@types/react-table": "^7.7.1",
     "@types/react-transition-group": "^4.4.1",
     "@types/yup": "^0.29.12"
   }
