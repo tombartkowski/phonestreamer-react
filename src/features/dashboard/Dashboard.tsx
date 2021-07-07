@@ -11,7 +11,7 @@ export const Dashboard = () => {
   const appItems = apps?.map(app => <AppListItem key={app.id} app={app} />);
 
   return (
-    <Box maxW="900px" mx="auto" mt="10" px="4">
+    <Box mt="10">
       <SectionHeader title="Uploaded apps">
         <Link to="/upload">
           <Button

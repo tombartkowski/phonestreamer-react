@@ -11,7 +11,7 @@ export const InputErrorMessage: FC<InputErrorMessageProps> = ({
   message,
 }) => {
   return (
-    <Box h={visible ? 8 : 4} transition="height 0.2s ease-out">
+    <Box h={visible && message.trim() ? 8 : 4} transition="height 0.2s ease-out">
       {visible && <FormErrorMessage display="inline">{message}</FormErrorMessage>}
     </Box>
   );

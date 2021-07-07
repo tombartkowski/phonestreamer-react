@@ -24,7 +24,7 @@ export const InstructionCodeToCopy: FC<InstructionCodeToCopyProps> = ({ code }) 
         {code}
       </Code>
       <Tooltip fontSize="md" label="Copied!" placement="top" isOpen={hasCopied}>
-        <Button onClick={onCopy} size="lg" ml={2}>
+        <Button onClick={onCopy} size="lg" fontSize="1rem" ml={2}>
           Copy
         </Button>
       </Tooltip>

@@ -33,8 +33,8 @@ export const AppListItem: FC<AppListItemProps> = ({ app }) => {
   return (
     <HStack
       transition="all 0.1s ease-out"
-      _hover={{ bg: '#272F3F' }}
-      cursor="pointer"
+      // _hover={{ bg: '#272F3F' }}
+      // cursor="pointer"
       px="7"
       py={4}
       spacing="0"

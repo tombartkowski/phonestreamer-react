@@ -1,12 +1,18 @@
 import { Image } from '@chakra-ui/react';
-import { FC } from 'react';
+import { FC, Suspense } from 'react';
 import SuperEllipse, { Preset } from 'react-superellipse';
+import { useImage } from 'react-image';
 
 type AppListItemIconProps = {
   iconUrl: string;
 };
 
 export const AppListItemIcon: FC<AppListItemIconProps> = ({ iconUrl }) => {
+  const { src } = useImage({
+    srcList: iconUrl,
+    useSuspense: false,
+  });
+
   return (
     <SuperEllipse
       r1={Preset.iOS.r1}
@@ -17,7 +23,7 @@ export const AppListItemIcon: FC<AppListItemIconProps> = ({ iconUrl }) => {
         backgroundColor: '#4A5568',
       }}
     >
-      <Image src={iconUrl} alt="App Icon" />
+      <img src={src} alt="App Icon" />
     </SuperEllipse>
   );
 };

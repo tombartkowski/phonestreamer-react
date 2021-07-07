@@ -1,9 +1,10 @@
 import { FormControl, FormLabel, InputGroup } from '@chakra-ui/react';
 import { FieldHookConfig, useField } from 'formik';
 import { FC, FocusEvent, useState } from 'react';
-
 import { InputErrorMessage } from './InputErrorMessage';
 import { TextInput } from './TextInput';
+
+export type InputFieldSize = 'md' | 'lg';
 
 type InputFieldProps = {
   id: string;
@@ -11,6 +12,7 @@ type InputFieldProps = {
   label: string;
   placeholder: string;
   shouldValidate?: boolean;
+  size?: InputFieldSize;
 };
 
 export const InputField: FC<FieldHookConfig<string> & InputFieldProps> = ({
@@ -19,6 +21,7 @@ export const InputField: FC<FieldHookConfig<string> & InputFieldProps> = ({
   label,
   placeholder,
   shouldValidate = true,
+  size = 'lg',
   children,
   ...props
 }) => {
@@ -37,8 +40,10 @@ export const InputField: FC<FieldHookConfig<string> & InputFieldProps> = ({
 
   return (
     <FormControl isInvalid={showFeedback}>
-      <FormLabel htmlFor={id}>{label}</FormLabel>
-      <InputGroup size="lg" variant="filled">
+      <FormLabel fontSize={size == 'lg' ? '1rem' : '0.9rem'} htmlFor={id}>
+        {label}
+      </FormLabel>
+      <InputGroup size={size} variant="filled">
         <TextInput
           {...field}
           id={id}

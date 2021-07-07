@@ -2,11 +2,17 @@ import { Menu, MenuList, MenuGroup, MenuItem, MenuDivider } from '@chakra-ui/rea
 import { MenuButton } from './MenuButton';
 import firebase from 'firebase/app';
 import 'firebase/auth';
+import { Link } from 'react-router-dom';
+import { FC } from 'react';
 
-export const AccountMenu = () => {
+type AccountMenuProps = {
+  isActive: boolean;
+};
+
+export const AccountMenu: FC<AccountMenuProps> = ({ isActive }) => {
   return (
     <Menu>
-      <MenuButton title="Account" />
+      <MenuButton isActive={isActive} title="Account" />
       <MenuList>
         <MenuGroup
           marginStart="3"
@@ -15,9 +21,15 @@ export const AccountMenu = () => {
           title="Account"
           mb="1.5"
         >
-          <MenuItem fontWeight="medium">Settings</MenuItem>
-          <MenuItem fontWeight="medium">Billing</MenuItem>
-          <MenuItem fontWeight="medium">Usage</MenuItem>
+          <MenuItem as={Link} to="/account/settings" fontWeight="medium">
+            Settings
+          </MenuItem>
+          <MenuItem as={Link} to="/account/billing" fontWeight="medium">
+            Billing
+          </MenuItem>
+          <MenuItem as={Link} to="/account/usage" fontWeight="medium">
+            Usage
+          </MenuItem>
         </MenuGroup>
         <MenuDivider />
         <MenuItem

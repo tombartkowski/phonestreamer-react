@@ -6,6 +6,7 @@ import { ResetPassword } from '../features/auth/components/ResetPassword';
 import { Dashboard } from '../features/dashboard/Dashboard';
 import { AppContainer } from '../components/AppContainer';
 import { ProtectedRoute } from './ProtectedRoute';
+import { Account } from '../features/account/Account';
 
 export const Router = () => {
   return (
@@ -23,6 +24,12 @@ export const Router = () => {
         <ProtectedRoute path="/upload">
           <AppContainer>
             <UploadApp />
+          </AppContainer>
+        </ProtectedRoute>
+        <Redirect exact from="/account" to="/account/settings" />
+        <ProtectedRoute path="/account/*">
+          <AppContainer>
+            <Account />
           </AppContainer>
         </ProtectedRoute>
       </Switch>

@@ -42,8 +42,7 @@ export const IOSInstruction = () => {
         <InstructionCodeToCopy code="cd Build/Products/Debug-iphonesimulator" />
         <InstructionParagraph>
           Finally open the current directory in <strong>Finder</strong>. Your app wil
-          be there as <Code>{'<your-app-name>'}.app</Code>. It can also appear
-          without an extension
+          be there as <Code>{'<your-app-name>'}.app</Code>. It can also
         </InstructionParagraph>
         <InstructionCodeToCopy code="open ." />
       </Box>

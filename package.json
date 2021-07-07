@@ -31,6 +31,7 @@
     "react-dropzone": "^11.3.4",
     "react-hook-form": "^7.9.0",
     "react-icons": "^4.2.0",
+    "react-image": "^4.0.3",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
     "react-superellipse": "0.0.6",

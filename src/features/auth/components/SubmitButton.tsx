@@ -13,6 +13,7 @@ export const SubmitButton = (props: ButtonProps) => {
       size="lg"
       fontSize="md"
       isFullWidth
+      {...props}
     >
       {props.children}
     </Button>

@@ -4,7 +4,7 @@ import { Navbar } from '../features/navbar/Navbar';
 
 export const AppContainer: FC = ({ children }) => {
   return (
-    <Box minH="95vh">
+    <Box maxW="900px" mx="auto" px="4" minH="95vh">
       <Navbar />
       {children}
     </Box>

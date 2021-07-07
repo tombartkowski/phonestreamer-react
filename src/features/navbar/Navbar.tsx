@@ -7,7 +7,7 @@ import { NavbarLogo } from './NavbarLogo';
 export const Navbar = () => {
   const location = useLocation();
   return (
-    <Flex p="3" mt="2" mx="auto" bg="gray.800" maxW="900px" align="center">
+    <Flex py="3" mt="2" bg="gray.800" align="center">
       <NavbarLogo />
       <Spacer />
       <Stack spacing={4} direction="row" align="center">
@@ -16,7 +16,7 @@ export const Navbar = () => {
           path="/dashboard"
           title="Dashboard"
         />
-        <AccountMenu />
+        <AccountMenu isActive={location.pathname.includes('/account')} />
       </Stack>
     </Flex>
   );
